@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${book.id != null ? 'Edit Book' : 'Add New Book'}"></title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .form-container .actions {
+            margin-top: 20px;
+        }
+        .form-container .actions a {
+            text-decoration: none;
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .form-container .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+  <h1 th:text="${book.id != null ? 'Edit Book' : 'Add New Book'}"></h1>
+  <form action="#" th:action="@{${book.id != null} ? '/books/' + book.id : '/books'}" th:object="${book}" method="post">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" th:field="*{title}" />
+    </div>
+    <div>
+      <label for="author">Author:</label>
+      <input type="text" id="author" th:field="*{author}" />
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input type="text" id="price" th:field="*{price}" />
+    </div>
+    <div>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+  <div class="actions">
+    <a href="/books">Back to List</a>
+  </div>
+</div>
+</body>
+</html>
